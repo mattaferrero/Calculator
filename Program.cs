@@ -1,10 +1,21 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
 // ideas: Solve(), Rewrite(), Factor(), Graph() etc.
 
 public class Expression {
     private readonly string _expression;
+
+    //private struct pstack {
+    //    public int X;
+    //    public int Y;
+
+    //    public pstack(int x, int y) {
+    //        X = x;
+    //        Y = y;
+    //    }
+    //} 
 
     public Expression(string expression) {
         if (string.IsNullOrEmpty(expression)) {
@@ -16,16 +27,6 @@ public class Expression {
 
     // These internal/private class members and data structures are used for restructuring an arithmetic or algebraic mathematical expression without using tokens.
     // This is an experimental algorithm for use in benchmark testing, and no guarantees are made as to its efficiency or accuracy.
-
-    //private struct pstack {
-    //    public int X;
-    //    public int Y;
-
-    //    public pstack(int x, int y) {
-    //        X = x;
-    //        Y = y;
-    //    }
-    //} 
 
     private int PStacker() {
 
@@ -74,7 +75,7 @@ public static class Program {
     public static int Main() {
         while (true) {
             Console.WriteLine("Enter a valid math expression ('q' to quit): ");
-            string expression = Console.ReadLine();
+            string expression = Console.ReadLine() ?? "";
 
             if (expression == "q") {
                 break;
@@ -85,6 +86,5 @@ public static class Program {
 
         return 0; // todo: add basic exception handling for garbage input. low priority.
     }
-
 }
 
