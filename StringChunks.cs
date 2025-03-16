@@ -40,7 +40,8 @@ namespace Mammon {
 		// Will return a List<string> with one entry of "ello the".
 		public List<string> PullStringChunk(string s, List<int> start_idx, List<int> end_idx) {
 			int s_size = start_idx.Count;
-			List<string> ret = new(s_size);
+			int c_size = end_idx.Count;
+			List<string> ret = new(s_size + c_size);
 
 			for (int i = 0; i < s_size; i++) {
 				ret.Add(s.Substring(start_idx[i], end_idx[i] - start_idx[i]));

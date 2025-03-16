@@ -15,13 +15,10 @@ public static class Program {
                 break;
             }
 
-            // Expression(string s); must be called before any other methods from class Expression
-
-            Pterms ptermsClassObj = new Pterms(expression);
-            List<string> pterms = ptermsClassObj.PullLinearPterms();
-
-            foreach (string s in pterms) {
-                Console.WriteLine(s);
+            Pterms pterms = new Pterms(expression);
+            var ret = pterms.PullLinearPterms();
+            foreach (string term in ret) {
+                Console.WriteLine(term);
             }
         }
 

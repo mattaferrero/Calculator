@@ -17,7 +17,5 @@ namespace Mammon {
             _expression = expression;
         }
 
-        
-
     }
 }
