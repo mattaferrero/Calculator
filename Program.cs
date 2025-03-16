@@ -16,6 +16,13 @@ public static class Program {
             }
 
             // Expression(string s); must be called before any other methods from class Expression
+
+            Pterms ptermsClassObj = new Pterms(expression);
+            List<string> pterms = ptermsClassObj.PullLinearPterms();
+
+            foreach (string s in pterms) {
+                Console.WriteLine(s);
+            }
         }
 
         return 0; // todo: add basic exception handling for garbage input. low priority.
