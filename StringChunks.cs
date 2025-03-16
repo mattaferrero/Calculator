@@ -41,10 +41,16 @@ namespace Mammon {
 		public List<string> PullStringChunk(string s, List<int> start_idx, List<int> end_idx) {
 			int s_size = start_idx.Count;
 			int c_size = end_idx.Count;
-			List<string> ret = new(s_size + c_size);
+
+			if (s_size != c_size) {
+				Console.WriteLine("Error: Mismatching parentheses '(' does not have matching ')'. Returning empty List<string>");
+				return new List<string>();
+			}
+
+			List<string> ret = new();
 
 			for (int i = 0; i < s_size; i++) {
-				ret.Add(s.Substring(start_idx[i], end_idx[i] - start_idx[i]));
+				ret.Add(s.Substring(start_idx[i] + 1, end_idx[i] - start_idx[i] - 1));
 			}
 
 			return ret;
