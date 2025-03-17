@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
 using Mammon;
@@ -15,11 +14,15 @@ public static class Program {
                 break;
             }
 
-            Pterms pterms = new Pterms(expression);
-            var ret = pterms.PullLinearPterms();
-            foreach (string term in ret) {
-                Console.WriteLine(term);
+            var exp = expression.Replace(" ", string.Empty); // todo: performance check here
+
+            Expression expressionClassObj = new Mammon.Expression(expression);
+            var evaluated = expressionClassObj.EvalPterms();
+
+            foreach (float item in evaluated) {
+                Console.WriteLine(item);
             }
+
         }
 
         return 0; // todo: add basic exception handling for garbage input. low priority.

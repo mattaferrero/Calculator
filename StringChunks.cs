@@ -9,9 +9,6 @@ namespace Mammon {
 
 	public class StringChunks {
 		// PullCharIndexes(string s, char c) Returns a List<int> of zero-based indexes of the specified character from the specified string. 
-		// Example usage:
-		// var indexes = PullCharIndexes("Greetings flesh sacks", 'e'); 
-		// Will return a List<int> with the values 2, 3, 12.
 		public List<int> PullCharIndexes(string s, char c) {
 			List<int> ret = new List<int>();
 
@@ -50,7 +47,7 @@ namespace Mammon {
 			List<string> ret = new();
 
 			for (int i = 0; i < s_size; i++) {
-				ret.Add(s.Substring(start_idx[i] + 1, end_idx[i] - start_idx[i] - 1));
+				ret.Add(s.Substring(start_idx[i] + 1, end_idx[i] - start_idx[i] - 1)); // +1 / -1 index manipulation allows us to remove the '(' and ')' characters from the substring.
 			}
 
 			return ret;
