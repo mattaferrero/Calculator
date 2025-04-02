@@ -22,7 +22,7 @@ namespace Mammon {
         // ((1+1) / 2) is "nested" and support for nested expressions will be implemented in PullPterms().
         public List<string> PullLinearPterms() {
             StringChunks stringChunks = new StringChunks();
-            
+
             // Get the indexes of all '(' and ')' characters in _pterms.
             List<int> open_p = stringChunks.PullCharIndexes(_expression, '(');
             List<int> close_p = stringChunks.PullCharIndexes(_expression, ')');
@@ -32,7 +32,5 @@ namespace Mammon {
 
             return pterms;
         }
-
     }
-
 }

@@ -46,6 +46,15 @@ namespace Mammon {
             return ret;
         }
 
+
+        // Method PullLinearTerms() returns each "term" between parentheticals in an expression as a List<string>.
+        // Example: string exp = "(1+1) + 2 (2+2) - (1) + 12x (3-3)" will return a List<string> with members "+ 2", "-", "+ 12x".
+        public List<string> PullLinearPterms(string s, List<int> start_idx, List<int> end_idx) {
+
+
+
+        }
+
         public int Solve() {
 
 

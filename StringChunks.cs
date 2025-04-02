@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http.Headers;
 
 namespace Mammon {
 	/* 
@@ -51,6 +52,19 @@ namespace Mammon {
 			}
 
 			return ret;
+		}
+
+		
+		// PullExcludeStringChunks(string s, List<int> idx, List<int> jdx) returns a List<string>
+		// excluding all characters between all instances of idx and jdx indexes.
+		// Example:
+		// "a + (1+1) - b" will return "a + (  ) - b"
+		// The parenthetical characters remain in the return List to keep indexing information for future processing.
+		public List<string> PullExcludeStringChunks(string s, List<int> start_idx, List<int> end_idx) {
+
+
+
+			return;
 		}
 	}
 }
