@@ -39,10 +39,11 @@ namespace Mammon {
 
                 if (char.IsDigit(current)) {
                     _tokens.Add(ReadNumber(current));
+                    continue;
                 }
 
                 if ("()^*/+-".Contains(current)) {
-                    _tokens.Add(ReadOperator());
+                    _tokens.Add(ReadOperator(current));
                 }
 
                 else {
@@ -54,11 +55,11 @@ namespace Mammon {
             return _tokens;
         }
 
-        private Token ReadNumber(char c) {
+        private Token ReadNumber(char current) { // todo: clean up "current/char c"
             var sb = new StringBuilder();
 
-            while (_pos < _input.Length && char.IsDigit(_input[_pos])) {
-                sb.Append(_input[_pos]);
+            while (_pos < _input.Length && char.IsDigit(current)) {
+                sb.Append(current);
                 _pos++;
                 continue;
             }
@@ -66,7 +67,61 @@ namespace Mammon {
             int tmp_val = Convert.ToInt32(sb.ToString());
             float val = (float)tmp_val; // casting is appropriate here.
 
-            Token token = new Token();
+            Token token = new Token(TokenType.Number, OperatorType.None, val);
+
+            return token;
+        }
+
+        private Token ReadOperator(char current) {
+            TokenType ttype = TokenType.Operator;
+            OperatorType optype = OperatorType.None;
+
+            switch (current) { // todo: optimize here.
+                case '(': {
+                        optype = OperatorType.OpenParentheses;
+                        break;
+                    }
+
+                case ')': {
+                        optype = OperatorType.CloseParentheses;
+                        break;
+                    }
+
+                case '^': {
+                        optype = OperatorType.Exponent;
+                        break;
+                    }
+
+                case '*': {
+                        optype = OperatorType.Multiply;
+                        break;
+                    }
+
+                case '/': {
+                        optype = OperatorType.Divide;
+                        break;
+                    }
+
+                case '+': {
+                        optype = OperatorType.Add;
+                        break;
+                    }
+
+                case '-': {
+                        optype = OperatorType.Subtract;
+                        break;
+                    }
+
+                default: {
+                        // todo: implement ExplodeMonitor().
+                        break;
+                    }
+            }
+
+            Token token = new Token(ttype, optype, 0);
+            _pos++;
+
+            return token;
         }
     }
 }

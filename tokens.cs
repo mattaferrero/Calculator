@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Mammon {
-    
     public enum TokenType {
         Number,             // integers, floats, sci notation
         Operator,           // ( ), ^, *, /, +, -, %
