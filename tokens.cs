@@ -26,7 +26,8 @@ namespace Mammon {
         Multiply,
         Divide,
         Add,
-        Subtract
+        Subtract,
+        None
     }
     
     // Sorry babe I'm basically ripping you off at this point :( Mine's better though <3 (4real iluvyou)
