@@ -8,9 +8,9 @@ namespace Mammon {
     public class Token {
         public TokenType TType { get; }
         public OperatorType OpType { get; }
-        public string Value;
+        public float Value;
 
-        public Token(TokenType type, OperatorType opType, string value) {
+        public Token(TokenType type, OperatorType opType, float value) {
             TType = type;
             OpType = opType;
             Value = value;
@@ -37,7 +37,7 @@ namespace Mammon {
                 }
 
                 if (char.IsDigit(current)) {
-                    _tokens.Add(ReadNumber());
+                    _tokens.Add(ReadNumber(current));
                 }
 
                 if ("()^*/+-".Contains(current)) {
@@ -45,7 +45,7 @@ namespace Mammon {
                 }
 
                 else {
-                    throw new Exception($"ERROR: SYSTEM ERROR! INVALID INPUT: {current}. PERFORMING EMERGENCY DIAGNOSTICS. SETTING LOG. SHUTTING DOWN.");
+                    throw new Exception($"ERROR WARNING ERROR: SYSTEM ERROR! INVALID INPUT: {current}. PERFORMING EMERGENCY DIAGNOSTICS. SETTING LOG. SHUTTING DOWN.");
                     // todo: write code to violently turn computer off.
                 }
             }
@@ -53,8 +53,14 @@ namespace Mammon {
             return _tokens;
         }
 
-        private Token ReadNumber() {
-            // The ASCII value of character '0' is 48, so we're subtracting 48 from 'c' to get an integer value.
+        private Token ReadNumber(char c) {
+            var sb = new StringBuilder();
+
+            while (_pos < _input.Length && char.IsDigit(_input[_pos])) {
+                sb.Append(_input[_pos]);
+                _pos++;
+            }
+
 
         }
     }
