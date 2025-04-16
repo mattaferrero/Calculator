@@ -10,8 +10,8 @@ namespace Mammon {
         public OperatorType OpType { get; }
         public float Value;
 
-        public Token(TokenType type, OperatorType opType, float value) {
-            TType = type;
+        public Token(TokenType tType, OperatorType opType, float value) {
+            TType = tType;
             OpType = opType;
             Value = value;
         }
@@ -34,6 +34,7 @@ namespace Mammon {
 
                 if (char.IsWhiteSpace(current)) {
                     _pos++;
+                    continue;
                 }
 
                 if (char.IsDigit(current)) {
@@ -59,9 +60,13 @@ namespace Mammon {
             while (_pos < _input.Length && char.IsDigit(_input[_pos])) {
                 sb.Append(_input[_pos]);
                 _pos++;
+                continue;
             }
 
+            int tmp_val = Convert.ToInt32(sb.ToString());
+            float val = (float)tmp_val; // casting is appropriate here.
 
+            Token token = new Token();
         }
     }
 }
