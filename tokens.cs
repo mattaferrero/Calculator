@@ -30,37 +30,37 @@ namespace Mammon {
     }
     
     // Sorry babe I'm basically ripping you off at this point :( Mine's better though <3 (4real iluvyou)
-    public static class TokenMethods { 
-        public static OperatorType GetOperator(char c) {
+//    public static class TokenMethods { 
+//        public static OperatorType GetOperator(char c) {
 
-        }
+//        }
 
-        /*
-         * Okay so this looks fairly complicated, but it's just a compact and (hopefully) more efficient way
-         * of converting each character '0', '1', .. '9' to its integer counterpart. There are a few different
-         * ways of writing this, and some are more efficient than others. Here's a non-comprehensive list of 
-         * alternative one-liners:
-         * 
-         * static int Pattern(char c) => c - '0' is int i and < 10 and >= 0 ? i : -1;
-         * static int If(char c) { if (c >= '0' && c <= '9') return c - '0'; else return -1; }
-         * static int Ternary(char c) => (c >= '0' && c <= '9') ? c - '0' : -1;
-         * static int TernaryPattern(char c) => (c is >= '0' and <= '9') ? c - '0' : -1;
-         * 
-         * And for the least efficient but most human-readable form:
-         * 
-         *         switch (c)
-        {
-            case '0' : return 0;
-            ... 
-            case '9' : return 9;
-            default : return -1;
-        }
+//        /*
+//         * Okay so this looks fairly complicated, but it's just a compact and (hopefully) more efficient way
+//         * of converting each character '0', '1', .. '9' to its integer counterpart. There are a few different
+//         * ways of writing this, and some are more efficient than others. Here's a non-comprehensive list of 
+//         * alternative one-liners:
+//         * 
+//         * static int Pattern(char c) => c - '0' is int i and < 10 and >= 0 ? i : -1;
+//         * static int If(char c) { if (c >= '0' && c <= '9') return c - '0'; else return -1; }
+//         * static int Ternary(char c) => (c >= '0' && c <= '9') ? c - '0' : -1;
+//         * static int TernaryPattern(char c) => (c is >= '0' and <= '9') ? c - '0' : -1;
+//         * 
+//         * And for the least efficient but most human-readable form:
+//         * 
+//         *         switch (c)
+//        {
+//            case '0' : return 0;
+//            ... 
+//            case '9' : return 9;
+//            default : return -1;
+//        }
 
-        The switch statement results in about 25 ish ASM instructions, the others about 6-7 ish.
-        */
+//        The switch statement results in about 25 ish ASM instructions, the others about 6-7 ish.
+//        */
 
-        public static int GetNumber(char c) {
-            return (c >= '0' && c <= '9') ? c - '0' : -1;
-        }
-    }
+//        public static int GetNumber(char c) {
+//            return (c >= '0' && c <= '9') ? c - '0' : -1;
+//        }
+//    }
 }

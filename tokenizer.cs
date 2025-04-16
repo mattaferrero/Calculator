@@ -15,6 +15,10 @@ namespace Mammon {
             OpType = opType;
             Value = value;
         }
+
+        public override string ToString() {
+            return $"Token Type: {TType}, Operator Type: {OpType}, Value: {Value}";
+        }
     }
 
     public class TokenStream {
@@ -47,8 +51,9 @@ namespace Mammon {
                 }
 
                 else {
-                    throw new Exception($"ERROR WARNING ERROR: SYSTEM ERROR! INVALID INPUT: {current}. PERFORMING EMERGENCY DIAGNOSTICS. SETTING LOG. SHUTTING DOWN.");
-                    // todo: write code to violently turn computer off.
+                    // throw new Exception($"ERROR WARNING ERROR: SYSTEM ERROR! INVALID INPUT: {current}. PERFORMING EMERGENCY DIAGNOSTICS. SETTING LOG. SHUTTING DOWN.");
+                    // todo: write code to violently shut down computer.
+                    break;
                 }
             }
 
@@ -68,6 +73,7 @@ namespace Mammon {
             float val = (float)tmp_val; // casting is appropriate here.
 
             Token token = new Token(TokenType.Number, OperatorType.None, val);
+            _pos++;
 
             return token;
         }
