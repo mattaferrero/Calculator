@@ -23,66 +23,58 @@ namespace Mammon {
 
     public class TokenStream {
         private string _input;
-        private int _pos;
         private List<Token> _tokens;
 
         public List<Token> Tokenize(string input) {
+            // This object MUST be created first:
+            var iterator = StringIterator.CreateInstance("Avaricia"); // This string is never used, just ignore it.
+
             _input = input;
-            _pos = 0;
             _tokens = new List<Token>();
+            iterator.ResetString(input);
 
-            // I really hate this giant logic tree, but i'll find a way to improve on it later.
-            // For now, here's a bigass if block.
-            while (_pos < _input.Length) {
-                char current = _input[_pos];
+            // This loop is where the token stream List is built from string input.
+            while (iterator.GetNextChar() is char ch) {
+                if (char.IsWhiteSpace(ch)) {
+                    continue; // White space must be treated as a token seperator, it is ignored for now.
+                }
 
-                if (char.IsWhiteSpace(current)) {
-                    _pos++;
+                if ("()^*/+-".Contains(ch)) { // todo: create seperate file for string constants.
+                    _tokens.Add(GetOpToken(ch));
                     continue;
                 }
 
-                if (char.IsDigit(current)) {
-                    _tokens.Add(ReadNumber(current));
+                if (char.IsDigit(ch)) { // todo: write comment explaining logic here. when hell freezes over. you don't deserve to know my thoughts.
+                    var sb = new StringBuilder();
+                    var pos = ch;
+
+                    while (char.IsDigit(pos)) {
+                        sb.Append(pos);
+                        iterator.GetNextChar();
+                    }
+
+                    int tmp = Convert.ToInt32(sb.ToString());
+                    float val = (float)tmp; // Casting is appropriate here.
+
+                    Token token = new Token(TokenType.Number, OperatorType.None, val);
+                    _tokens.Add(token);
+
+                    iterator.GetPrevChar(); // We don't know how many digits the number is going to be, so we're just de-incrementing the string index by one.
+
                     continue;
                 }
 
-                if ("()^*/+-".Contains(current)) {
-                    _tokens.Add(ReadOperator(current));
-                }
-
-                else {
-                    // throw new Exception($"ERROR WARNING ERROR: SYSTEM ERROR! INVALID INPUT: {current}. PERFORMING EMERGENCY DIAGNOSTICS. SETTING LOG. SHUTTING DOWN.");
-                    // todo: write code to violently shut down computer.
-                    break;
-                }
+                return _tokens;
             }
 
-            return _tokens;
+            return _tokens; // i don't think this will ever get called eh
         }
 
-        private Token ReadNumber(char current) { // todo: clean up "current/char c"
-            var sb = new StringBuilder();
+        private Token GetOpToken(char ch) {
+            var optype = OperatorType.None;
+            var ttype = TokenType.Operator;
 
-            while (_pos < _input.Length && char.IsDigit(current)) {
-                sb.Append(current);
-                _pos++;
-                continue;
-            }
-
-            int tmp_val = Convert.ToInt32(sb.ToString());
-            float val = (float)tmp_val; // casting is appropriate here.
-
-            Token token = new Token(TokenType.Number, OperatorType.None, val);
-            _pos++;
-
-            return token;
-        }
-
-        private Token ReadOperator(char current) {
-            TokenType ttype = TokenType.Operator;
-            OperatorType optype = OperatorType.None;
-
-            switch (current) { // todo: optimize here.
+            switch (ch) {
                 case '(': {
                         optype = OperatorType.OpenParentheses;
                         break;
@@ -123,11 +115,11 @@ namespace Mammon {
                         break;
                     }
             }
+            
 
             Token token = new Token(ttype, optype, 0);
-            _pos++;
-
             return token;
         }
+
     }
 }
