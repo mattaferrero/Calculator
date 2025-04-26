@@ -10,6 +10,7 @@ namespace Mammon {
             TokenStream stream = new TokenStream();
 
             while (true) {
+                Console.WriteLine("Enter Expression: ");
                 var input = Console.ReadLine();
                 var output = stream.Tokenize(input);
 

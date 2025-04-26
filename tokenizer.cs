@@ -46,10 +46,10 @@ namespace Mammon {
 
                 if (char.IsDigit(ch)) { // todo: write comment explaining logic here. when hell freezes over. you don't deserve to know my thoughts.
                     var sb = new StringBuilder();
-                    var pos = ch;
 
-                    while (char.IsDigit(pos)) {
-                        sb.Append(pos);
+                    while (char.IsDigit(ch)) {
+
+                        sb.Append(ch);
                         iterator.GetNextChar();
                     }
 
