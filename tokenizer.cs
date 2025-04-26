@@ -47,7 +47,7 @@ namespace Mammon {
                 if (char.IsDigit(ch)) { // todo: write comment explaining logic here. when hell freezes over. you don't deserve to know my thoughts.
                     var sb = new StringBuilder();
 
-                    while (char.IsDigit(ch)) {
+                    while (iterator.GetNextChar() != null) {
 
                         sb.Append(ch);
                         iterator.GetNextChar();
@@ -115,11 +115,33 @@ namespace Mammon {
                         break;
                     }
             }
-            
+
 
             Token token = new Token(ttype, optype, 0);
             return token;
         }
 
+        private Token GetNumToken(char ch) {
+            var optype = OperatorType.None;
+            var ttype = TokenType.Number;
+            var val = 0;
+
+            switch (ch) {
+                case '0': { val = 0; break; }
+                case '1': { val = 1; break; }
+                case '2': { val = 2; break; }
+                case '3': { val = 3; break; }
+                case '4': { val = 4; break; }
+                case '5': { val = 5; break; }
+                case '6': { val = 6; break; }
+                case '7': { val = 7; break; }
+                case '8': { val = 8; break; }
+                case '9': { val = 9; break; }
+                default: { break; }
+            }
+
+            Token token = new Token(ttype, optype, val);
+            return token;
+        }
     }
 }
