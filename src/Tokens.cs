@@ -14,7 +14,8 @@ namespace Mammon {
         ComparisonOp,       // ==, !=, <, >, etc
         LogicalOp,          // && (logical AND), ||, etc
         Special,            // NaN, inf/-inf, reserved tokens
-        UserFunction        // User-defined functions, func myFunc(x) { return x + 2; }, (x) => x^2, etc
+        UserFunction,       // User-defined functions, func myFunc(x) { return x + 2; }, (x) => x^2, etc
+        None                // reserved
     }
 
     public enum OperatorType {
@@ -25,20 +26,30 @@ namespace Mammon {
         Divide,
         Add,
         Subtract,
+        None                
+    }
+
+    public enum InputType {
+        Letter,
+        Number,
+        Character,
         None
     }
 
     public class Token {
+        // Properties and Fields
         public TokenType TType { get; }
         public OperatorType OpType { get; }
-        public float Value; // This is meant to represent any integer value, for now it's a basic placeholder.
+        public decimal Value; 
 
-        public Token(TokenType tType, OperatorType opType, float value) {
+        // Constructors
+        public Token(TokenType tType, OperatorType opType, decimal value) {
             TType = tType;
             OpType = opType;
             Value = value;
         }
 
+        // Overrides
         public override string ToString() {
             return $"Token Type: {TType}, Operator Type: {OpType}, Value: {Value}";
         }
