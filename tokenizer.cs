@@ -44,24 +44,24 @@ namespace Mammon {
                     continue;
                 }
 
-                if (char.IsDigit(ch)) { // todo: write comment explaining logic here. when hell freezes over. you don't deserve to know my thoughts.
-                    var sb = new StringBuilder();
+                if (char.IsDigit(ch)) {
+                    bool d_flag = true;
+                    int result = 0;
 
-                    while (iterator.GetNextChar() != null) {
+                    while (d_flag) {
+                        int digit = ch - '0';
+                        result = result * 10 + digit;
 
-                        sb.Append(ch);
                         iterator.GetNextChar();
+
+                        if (ch < '0' || ch > '9') { // just checking if ch isn't a digit.
+                            d_flag = false;
+                            break;
+                        }
                     }
 
-                    int tmp = Convert.ToInt32(sb.ToString());
-                    float val = (float)tmp; // Casting is appropriate here.
-
-                    Token token = new Token(TokenType.Number, OperatorType.None, val);
+                    Token token = new Token (TokenType.Number, OperatorType.None, result);
                     _tokens.Add(token);
-
-                    iterator.GetPrevChar(); // We don't know how many digits the number is going to be, so we're just de-incrementing the string index by one.
-
-                    continue;
                 }
 
                 return _tokens;
@@ -121,27 +121,5 @@ namespace Mammon {
             return token;
         }
 
-        private Token GetNumToken(char ch) {
-            var optype = OperatorType.None;
-            var ttype = TokenType.Number;
-            var val = 0;
-
-            switch (ch) {
-                case '0': { val = 0; break; }
-                case '1': { val = 1; break; }
-                case '2': { val = 2; break; }
-                case '3': { val = 3; break; }
-                case '4': { val = 4; break; }
-                case '5': { val = 5; break; }
-                case '6': { val = 6; break; }
-                case '7': { val = 7; break; }
-                case '8': { val = 8; break; }
-                case '9': { val = 9; break; }
-                default: { break; }
-            }
-
-            Token token = new Token(ttype, optype, val);
-            return token;
-        }
     }
 }
