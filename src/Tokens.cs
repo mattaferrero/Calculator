@@ -29,16 +29,19 @@ namespace Mammon {
     }
 
     public class Token {
+        // Properties and Fields
         public TokenType TType { get; }
         public OperatorType OpType { get; }
         public float Value; // This is meant to represent any integer value, for now it's a basic placeholder.
 
+        // Constructors
         public Token(TokenType tType, OperatorType opType, float value) {
             TType = tType;
             OpType = opType;
             Value = value;
         }
 
+        // Overrides
         public override string ToString() {
             return $"Token Type: {TType}, Operator Type: {OpType}, Value: {Value}";
         }

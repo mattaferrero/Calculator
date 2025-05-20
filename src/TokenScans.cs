@@ -7,6 +7,7 @@ using System;
 
 namespace Mammon {
     public class TokenScan {
+        // Fields
         private string _input;
 
         // Constructors
