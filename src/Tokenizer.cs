@@ -12,8 +12,11 @@ namespace Mammon {
         private List<Token> _tokens;
         private TokenScan _tokenscanner;
 
+        // probably should put these in a seperate file later.
+        private readonly char[] opchars = new char[] { '(', ')', '^', '*', '/', '+', '-' }; // operator character set.
+
         // Constructors
-        public TokenStream(String input) { 
+        public TokenStream(string input) { 
             _input = input;
             _tokens = new List<Token>();
             _tokenscanner = new TokenScan(_input);
@@ -21,35 +24,47 @@ namespace Mammon {
 
         // Methods
         public List<Token> Tokenize() { // The main logic block for our various method calls which ultimately builds the stream.
+            InputType itype = InputType.None;
             char t_opt = _tokenscanner.GetCurrentChar;
 
             if (char.IsDigit(t_opt)) {
-                // HandleDigits(_tokenscanner);
+                itype = InputType.Number;
             }
 
             if (char.IsLetter(t_opt)) {
-                // HandleLetters(_tokenscanner);
+                itype = InputType.Letter;
             }
-            
-            switch (t_opt) {
-                case '(':
-                case ')':
-                case '^':
-                case '*':
-                case '/':
-                case '+':
-                case '-': {
-                    // HandleOperators(_tokenscanner);
-                    break;
-                }
 
-                case ' ': {
-                    // HandleWhitespace();
-                    break;
-                }
-
-                default: break;
+            if (opchars.Contains(t_opt)) {
+                itype = InputType.Character;
             }
+
+                switch (itype) {
+                    case InputType.Number: {
+                        // number();
+                        break;
+                    }
+
+                    case InputType.Letter: {
+                        // letter(); 
+                        break;
+                    }
+
+                    case InputType.Character: {
+                        // Character();    
+                        break;
+                    }
+
+                    case InputType.None: {
+                        // dostuff();
+                        break;
+                    }
+
+                    default: {
+                        // do_otherstuff();
+                        break;
+                    }
+                }
 
             return _tokens;
         }

@@ -14,7 +14,8 @@ namespace Mammon {
         ComparisonOp,       // ==, !=, <, >, etc
         LogicalOp,          // && (logical AND), ||, etc
         Special,            // NaN, inf/-inf, reserved tokens
-        UserFunction        // User-defined functions, func myFunc(x) { return x + 2; }, (x) => x^2, etc
+        UserFunction,       // User-defined functions, func myFunc(x) { return x + 2; }, (x) => x^2, etc
+        None                // reserved
     }
 
     public enum OperatorType {
@@ -25,6 +26,13 @@ namespace Mammon {
         Divide,
         Add,
         Subtract,
+        None                
+    }
+
+    public enum InputType {
+        Letter,
+        Number,
+        Character,
         None
     }
 
