@@ -73,8 +73,38 @@ namespace Mammon {
         }
 
         // Builder methods build up the List<Token> stream
-        private void NumberBuilder(TokenScan scanner, List<Token> tokens) {
+        private void NumberBuilder(TokenScan scanner, List<Token> tokenlist) {
+            var wholenum = 0;
+            var remainder = 0;
 
+            // Converting chars to number-types.
+            while (char.IsDigit(scanner.GetCurrentChar)) {
+                var digit = scanner.GetCurrentChar - '0'; // Assuming ASCII standard. (lookin at you IBM EBCDIC mainframes -_-).
+                wholenum = wholenum * 10 + digit;
+                scanner.Offset++;
+            }
+
+            if (scanner.GetCurrentChar == '.') {
+                scanner.Offset++;
+
+                while (char.IsDigit(scanner.GetCurrentChar)) { // I know this is repetetive but I want to ensure wholenum and remainder are seperate vars.
+                    var digit = scanner.GetCurrentChar - '0';
+                    remainder = remainder * 10 + digit;
+                    scanner.Offset++;
+                }
+            }
+
+            // Here we combine wholenum and remainder to get our final decimal result:
+            // 1) Determine number of digits in var 'remainder'
+            // 2) Divide 'remainder' by 10^digits
+            // 3) Add to wholenum for final result, e.g. 'wholenum' = 3, 'remainder' = 14, result = 3.14.
+            var digits = remainder == 0 ? 1 : (int)Math.Floor(Math.Log10((double)remainder)) + 1;
+            decimal scale = (decimal)Math.Pow(10, digits);
+            decimal result = wholenum + (remainder / scale);
+
+            // Build the token
+            Token token = new Token(TokenType.Number, OperatorType.None, result);
+            tokenlist.Add(token);
 
             return;
         }
