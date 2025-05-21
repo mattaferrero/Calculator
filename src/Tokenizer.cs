@@ -25,33 +25,35 @@ namespace Mammon {
         // Methods
         public List<Token> Tokenize() { // The main logic block for our various method calls which ultimately builds the stream.
             InputType itype = InputType.None;
-            char t_opt = _tokenscanner.GetCurrentChar;
 
-            if (char.IsDigit(t_opt)) {
-                itype = InputType.Number;
-            }
+            while ((_tokenscanner.GetRemainingInput.Length) > 0) {
+                char t_opt = _tokenscanner.GetCurrentChar;
 
-            if (char.IsLetter(t_opt)) {
-                itype = InputType.Letter;
-            }
+                if (char.IsDigit(t_opt)) {
+                    itype = InputType.Number;
+                }
 
-            if (opchars.Contains(t_opt)) {
-                itype = InputType.Character;
-            }
+                if (char.IsLetter(t_opt)) {
+                    itype = InputType.Letter;
+                }
+
+                if (opchars.Contains(t_opt)) {
+                    itype = InputType.Character;
+                }
 
                 switch (itype) {
                     case InputType.Number: {
-                        // number();
+                        NumberBuilder(_tokenscanner, _tokens);
                         break;
                     }
 
                     case InputType.Letter: {
-                        // letter(); 
+                        VariableBuilder(_tokenscanner, _tokens); 
                         break;
                     }
 
                     case InputType.Character: {
-                        // Character();    
+                        OperatorBuilder(_tokenscanner, _tokens);    
                         break;
                     }
 
@@ -65,8 +67,26 @@ namespace Mammon {
                         break;
                     }
                 }
+            }
 
             return _tokens;
+        }
+
+        // Builder methods build up the List<Token> stream
+        private void NumberBuilder(TokenScan scanner, List<Token> tokens) {
+
+
+            return;
+        }
+
+        private void VariableBuilder(TokenScan scanner, List<Token> tokens) {
+
+            return;
+        }
+
+        private void OperatorBuilder(TokenScan scanner, List<Token> tokens) {
+
+            return;
         }
     }
 }

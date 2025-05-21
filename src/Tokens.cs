@@ -40,10 +40,10 @@ namespace Mammon {
         // Properties and Fields
         public TokenType TType { get; }
         public OperatorType OpType { get; }
-        public float Value; // This is meant to represent any integer value, for now it's a basic placeholder.
+        public decimal Value; 
 
         // Constructors
-        public Token(TokenType tType, OperatorType opType, float value) {
+        public Token(TokenType tType, OperatorType opType, decimal value) {
             TType = tType;
             OpType = opType;
             Value = value;
