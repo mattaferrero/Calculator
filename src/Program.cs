@@ -14,7 +14,7 @@ class Program {
         TokenStream output = new TokenStream(input);
         output.Tokenize();
 
-        foreach (var item in output) {
+        foreach (var item in output._tokens) {
             Console.WriteLine(item);
         }
 

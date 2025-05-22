@@ -9,7 +9,7 @@ namespace Mammon {
     public class TokenStream {
         // Fields
         private string _input;
-        private List<Token> _tokens;
+        public List<Token> _tokens;
         private TokenScan _tokenscanner;
 
         // probably should put these in a seperate file later.
@@ -81,7 +81,10 @@ namespace Mammon {
             while (char.IsDigit(scanner.GetCurrentChar)) {
                 var digit = scanner.GetCurrentChar - '0'; // Assuming ASCII standard. (lookin at you IBM EBCDIC mainframes -_-).
                 wholenum = wholenum * 10 + digit;
-                scanner.Offset++;
+
+                if (scanner.GetRemainingInput.Length > 0) {
+                    scanner.Offset++;
+                }
             }
 
             if (scanner.GetCurrentChar == '.') {
@@ -90,7 +93,10 @@ namespace Mammon {
                 while (char.IsDigit(scanner.GetCurrentChar)) { // I know this is repetetive but I want to ensure wholenum and remainder are seperate vars.
                     var digit = scanner.GetCurrentChar - '0';
                     remainder = remainder * 10 + digit;
-                    scanner.Offset++;
+
+                    if (scanner.GetRemainingInput.Length > 0) {
+                        scanner.Offset++;
+                    }
                 }
             }
 
