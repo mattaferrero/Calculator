@@ -78,7 +78,7 @@ namespace Mammon {
             var remainder = 0;
 
             // Converting chars to number-types.
-            while (char.IsDigit(scanner.GetCurrentChar)) {
+            while (scanner.HasCharsRemaining && char.IsDigit(scanner.GetCurrentChar)) {
                 var digit = scanner.GetCurrentChar - '0'; // Assuming ASCII standard. (lookin at you IBM EBCDIC mainframes -_-).
                 wholenum = wholenum * 10 + digit;
 
@@ -87,7 +87,7 @@ namespace Mammon {
                 }
             }
 
-            if (scanner.GetCurrentChar == '.') {
+            if (scanner.HasCharsRemaining && scanner.GetCurrentChar == '.') {
                 scanner.Offset++;
 
                 while (char.IsDigit(scanner.GetCurrentChar)) { // I know this is repetetive but I want to ensure wholenum and remainder are seperate vars.
