@@ -9,10 +9,8 @@ namespace Mammon {
     public class TokenStream {
         // Fields
         private string _input;
-        public List<Token> _tokens;
+        public List<Token> _tokens; // todo: add ienum l8r.
         private TokenScan _tokenscanner;
-
-        // probably should put these in a seperate file later.
         private readonly char[] opchars = new char[] { '(', ')', '^', '*', '/', '+', '-' }; // operator character set.
 
         // Constructors
@@ -26,7 +24,7 @@ namespace Mammon {
         public List<Token> Tokenize() { // The main logic block for our various method calls which ultimately builds the stream.
             InputType itype = InputType.None;
 
-            while ((_tokenscanner.GetRemainingInput.Length) > 0) {
+            while ((_tokenscanner.HasCharsRemaining)) {
                 char t_opt = _tokenscanner.GetCurrentChar;
 
                 if (char.IsDigit(t_opt)) {
@@ -35,6 +33,10 @@ namespace Mammon {
 
                 if (char.IsLetter(t_opt)) {
                     itype = InputType.Letter;
+                }
+
+                if (char.IsWhiteSpace(t_opt)) {
+                    itype = InputType.None;
                 }
 
                 if (opchars.Contains(t_opt)) {
@@ -58,7 +60,9 @@ namespace Mammon {
                     }
 
                     case InputType.None: {
-                        // dostuff();
+                        if (_tokenscanner.HasCharsRemaining) {
+                            _tokenscanner.Offset++;
+                        }
                         break;
                     }
 
@@ -117,6 +121,55 @@ namespace Mammon {
         }
 
         private void OperatorBuilder(TokenScan scanner, List<Token> tokens) {
+            while (scanner.HasCharsRemaining && opchars.Contains(scanner.GetCurrentChar)) {
+                switch (scanner.GetCurrentChar) {
+                    case '(': {
+                        Token token = new Token(TokenType.Operator, OperatorType.OpenParentheses, 0);
+                        tokens.Add(token);
+                        break;
+                    }
+
+                    case ')': {
+                        Token token = new Token(TokenType.Operator, OperatorType.CloseParentheses, 0);
+                        tokens.Add(token);
+                        break;
+                    }
+
+                    case '^': {
+                        Token token = new Token(TokenType.Operator, OperatorType.Exponent, 0);
+                        tokens.Add(token);
+                        break;
+                    }
+
+                    case '*': {
+                        Token token = new Token(TokenType.Operator, OperatorType.Multiply, 0);
+                        tokens.Add(token);
+                        break;
+                    }
+
+                    case '/': {
+                        Token token = new Token(TokenType.Operator, OperatorType.Divide, 0);
+                        tokens.Add(token);
+                        break;
+                    }
+
+                    case '+': {
+                        Token token = new Token(TokenType.Operator, OperatorType.Add, 0);
+                        tokens.Add(token);
+                        break;
+                    }
+
+                    case '-': {
+                        Token token = new Token(TokenType.Operator, OperatorType.Subtract, 0);
+                        tokens.Add(token);
+                        break;
+                    }
+                }
+
+                if (scanner.HasCharsRemaining) {
+                    scanner.Offset++;
+                }
+            }
 
             return;
         }
