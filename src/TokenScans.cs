@@ -26,7 +26,9 @@ namespace Mammon {
         public char GetCurrentChar {
             get { return Str[Offset]; }
         }
-
+        public bool HasCharsRemaining {
+            get { return (Str.Length > Offset); }
+        }
         public string GetRemainingInput {
             get { return Str.Substring(Offset); }
         }
