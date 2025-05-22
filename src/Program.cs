@@ -8,14 +8,16 @@ using Mammon;
 
 class Program {
     public static int Main() {
-        Console.WriteLine("Enter number: ");
-        var input = Console.ReadLine();
+        while (true) {
+            Console.WriteLine("Enter number: ");
+            var input = Console.ReadLine();
 
-        TokenStream output = new TokenStream(input);
-        output.Tokenize();
+            TokenStream output = new TokenStream(input);
+            output.Tokenize();
 
-        foreach (var item in output._tokens) {
-            Console.WriteLine(item);
+            foreach (var item in output._tokens) {
+                Console.WriteLine(item);
+            }
         }
 
         return 0;

@@ -82,22 +82,18 @@ namespace Mammon {
                 var digit = scanner.GetCurrentChar - '0'; // Assuming ASCII standard. (lookin at you IBM EBCDIC mainframes -_-).
                 wholenum = wholenum * 10 + digit;
 
-                if (scanner.GetRemainingInput.Length > 0) {
-                    scanner.Offset++;
-                }
+                scanner.Offset++;
             }
 
             if (scanner.HasCharsRemaining && scanner.GetCurrentChar == '.') {
                 scanner.Offset++;
 
-                while (char.IsDigit(scanner.GetCurrentChar)) { // I know this is repetetive but I want to ensure wholenum and remainder are seperate vars.
+                 while (scanner.HasCharsRemaining && char.IsDigit(scanner.GetCurrentChar)) { // I know this is repetetive but I want to ensure wholenum and remainder are seperate vars.
                     var digit = scanner.GetCurrentChar - '0';
                     remainder = remainder * 10 + digit;
 
-                    if (scanner.GetRemainingInput.Length > 0) {
-                        scanner.Offset++;
-                    }
-                }
+                    scanner.Offset++;
+                 }
             }
 
             // Here we combine wholenum and remainder to get our final decimal result:
