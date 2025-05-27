@@ -8,6 +8,9 @@ using Mammon;
 
 class Program {
     public static int Main() {
+
+        Application.Run(new Form1());
+
         while (true) {
             Console.WriteLine("Enter number: ");
             var input = Console.ReadLine();
@@ -15,7 +18,7 @@ class Program {
             TokenStream output = new TokenStream(input);
             output.Tokenize();
 
-            foreach (var item in output._tokens) {
+            foreach (var item in output.Tokens) {
                 Console.WriteLine(item);
             }
         }

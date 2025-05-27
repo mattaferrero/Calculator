@@ -4,12 +4,14 @@
 // Here we have the logic stuff set up to create the actual token stream for use in our sorting algorithm later.
 
 using System;
+using System.Xml.Linq;
 
 namespace Mammon {
     public class TokenStream {
         // Fields
         private string _input;
-        public List<Token> _tokens; // todo: add ienum l8r.
+        private List<Token> _tokens;
+        public IReadOnlyList<Token> Tokens => _tokens;
         private TokenScan _tokenscanner;
         private readonly char[] opchars = new char[] { '(', ')', '^', '*', '/', '+', '-' }; // operator character set.
 
