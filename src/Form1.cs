@@ -17,15 +17,6 @@ namespace Mammon {
         public Form1() {
             InitializeComponent();
             _tokenStream = new TokenStream("Avaricia");
-
-            // Numeric button handler
-            button0.Click += NumpadAppend_Click();
-        }
-
-        private void NumpadAppend_Click(object sender, EventArgs e) {
-            if (sender is Button clickedButton) {
-                textBox1.Text += clickedButton.Text;
-            }
         }
 
         private void Form1_Load(object sender, EventArgs e) {
@@ -34,6 +25,13 @@ namespace Mammon {
 
         private void textBox1_TextChanged(object sender, EventArgs e) {
 
+        }
+
+        private void numpad_Click(object sender, EventArgs e) {
+            // Directly casting here is fine, need program to crash if handler changes
+            Button clicked_button = (Button)sender;
+
+            textBox1.Text += clicked_button.Text;
         }
     }
 }
