@@ -9,7 +9,7 @@ using Mammon;
 class Program {
     public static int Main() {
 
-        Application.Run(new Form1());
+        // Application.Run(new Form1());
 
         while (true) {
             Console.WriteLine("Enter number: ");

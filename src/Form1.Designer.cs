@@ -65,6 +65,16 @@
             button8 = new Button();
             button9 = new Button();
             textBox1 = new TextBox();
+            equals = new Button();
+            clear = new Button();
+            decimal_btn = new Button();
+            minus = new Button();
+            multiply = new Button();
+            button14 = new Button();
+            plus = new Button();
+            open_parentheses = new Button();
+            close_parentheses = new Button();
+            exponent = new Button();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -407,12 +417,133 @@
             textBox1.TabIndex = 11;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
+            // equals
+            // 
+            equals.Font = new Font("Courier New", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            equals.ForeColor = Color.Silver;
+            equals.Location = new Point(552, 367);
+            equals.Name = "equals";
+            equals.Size = new Size(94, 69);
+            equals.TabIndex = 12;
+            equals.Text = "=";
+            equals.UseVisualStyleBackColor = true;
+            // 
+            // clear
+            // 
+            clear.Font = new Font("Courier New", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            clear.ForeColor = Color.Silver;
+            clear.Location = new Point(152, 143);
+            clear.Name = "clear";
+            clear.Size = new Size(94, 69);
+            clear.TabIndex = 13;
+            clear.TabStop = false;
+            clear.Text = "C";
+            clear.UseVisualStyleBackColor = true;
+            // 
+            // decimal_btn
+            // 
+            decimal_btn.Font = new Font("Courier New", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            decimal_btn.ForeColor = Color.Silver;
+            decimal_btn.Location = new Point(252, 368);
+            decimal_btn.Name = "decimal_btn";
+            decimal_btn.Size = new Size(94, 69);
+            decimal_btn.TabIndex = 14;
+            decimal_btn.Text = ".";
+            decimal_btn.UseVisualStyleBackColor = true;
+            // 
+            // minus
+            // 
+            minus.Font = new Font("Courier New", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            minus.ForeColor = Color.Silver;
+            minus.Location = new Point(552, 142);
+            minus.Name = "minus";
+            minus.Size = new Size(94, 70);
+            minus.TabIndex = 16;
+            minus.Text = "-";
+            minus.UseVisualStyleBackColor = true;
+            // 
+            // multiply
+            // 
+            multiply.Font = new Font("Courier New", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            multiply.ForeColor = Color.Silver;
+            multiply.Location = new Point(552, 218);
+            multiply.Name = "multiply";
+            multiply.Size = new Size(94, 69);
+            multiply.TabIndex = 17;
+            multiply.Text = "x";
+            multiply.UseVisualStyleBackColor = true;
+            // 
+            // button14
+            // 
+            button14.Font = new Font("Courier New", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button14.ForeColor = Color.Silver;
+            button14.Location = new Point(552, 293);
+            button14.Name = "button14";
+            button14.Size = new Size(94, 69);
+            button14.TabIndex = 23;
+            button14.Text = "÷";
+            button14.UseVisualStyleBackColor = true;
+            // 
+            // plus
+            // 
+            plus.Font = new Font("Courier New", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            plus.ForeColor = Color.Red;
+            plus.Location = new Point(452, 367);
+            plus.Name = "plus";
+            plus.Size = new Size(94, 69);
+            plus.TabIndex = 24;
+            plus.Text = "+";
+            plus.UseVisualStyleBackColor = true;
+            // 
+            // open_parentheses
+            // 
+            open_parentheses.Font = new Font("Courier New", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            open_parentheses.ForeColor = Color.Silver;
+            open_parentheses.Location = new Point(152, 218);
+            open_parentheses.Name = "open_parentheses";
+            open_parentheses.Size = new Size(94, 69);
+            open_parentheses.TabIndex = 25;
+            open_parentheses.Text = "(";
+            open_parentheses.UseVisualStyleBackColor = true;
+            // 
+            // close_parentheses
+            // 
+            close_parentheses.Font = new Font("Courier New", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            close_parentheses.ForeColor = Color.Silver;
+            close_parentheses.Location = new Point(152, 293);
+            close_parentheses.Name = "close_parentheses";
+            close_parentheses.Size = new Size(94, 69);
+            close_parentheses.TabIndex = 26;
+            close_parentheses.Text = ")";
+            close_parentheses.UseVisualStyleBackColor = true;
+            // 
+            // exponent
+            // 
+            exponent.Font = new Font("Courier New", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            exponent.ForeColor = Color.Silver;
+            exponent.Location = new Point(152, 368);
+            exponent.Name = "exponent";
+            exponent.Size = new Size(94, 68);
+            exponent.TabIndex = 27;
+            exponent.Text = "x^2";
+            exponent.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(800, 450);
+            Controls.Add(exponent);
+            Controls.Add(close_parentheses);
+            Controls.Add(open_parentheses);
+            Controls.Add(plus);
+            Controls.Add(button14);
+            Controls.Add(multiply);
+            Controls.Add(minus);
+            Controls.Add(decimal_btn);
+            Controls.Add(clear);
+            Controls.Add(equals);
             Controls.Add(textBox1);
             Controls.Add(button9);
             Controls.Add(button8);
@@ -478,5 +609,15 @@
         private Button button8;
         private Button button9;
         private TextBox textBox1;
+        private Button equals;
+        private Button clear;
+        private Button decimal_btn;
+        private Button minus;
+        private Button multiply;
+        private Button button14;
+        private Button plus;
+        private Button open_parentheses;
+        private Button close_parentheses;
+        private Button exponent;
     }
 }
