@@ -1,0 +1,23 @@
+﻿// Preface
+This file describes the basic algorithm used to create and populate
+the Abstract Syntax Tree for use in basic arithmetic calculations.
+Although an effort has been made to ensure the tree can be populated
+with tokens of any variety, this current program version only
+guarantees arithmetic operations be calculated accurately to a
+precision of n digits. These operations are:
+
+Parentheticals, Exponents, Multiplication, Division, Addition, Subtraction
+
+Currently represented with the ASCII characters:
+
+( ) ^ * / + -
+
+Which are the basic arithmetic operations typically taught in early
+formal education. Although regional variations exist even within
+fundamental mathematics, it is assumed other institutions across the
+globe are not as pathetically idiotic as my own. Therefore, it is the
+desperately sincere hope of this author that everyone on the fucking
+planet can agree what basic arithmetic operations are and the other
+in which they should be handled.
+
+// Algorithm
